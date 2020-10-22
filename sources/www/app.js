@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const hostname = 'localhost'
-const port = 8095
+const port = 3000
 
-app.get('/', (req, res) => {
+app.get('/simple_webapp', (req, res) => {
   res.send('Hello World!')
 })
 
