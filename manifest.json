@@ -1,26 +1,21 @@
 {
-    "id": "my_webapp",
-    "name": "Custom Webapp",
+    "id": "simple_webapp",
+    "name": "SimpleWebapp",
     "packaging_format": 1,
     "description": {
-        "en": "Custom Web app with SFTP access",
-        "fr": "Application Web personnalisée avec accès SFTP"
+        "en": "HelloWorl Test",
+        "fr": "Test du Helloworld"
     },
     "version": "1.0~ynh3",
-    "url": "https://github.com/YunoHost-Apps/my_webapp_ynh",
-    "license": "GPL-3.0-only",
+    "url": "https://github.com/Emrudia/simple_webapp",
     "maintainer": {
         "name": "None...",
         "email": ""
     },
-    "previous_maintainers": [{
-        "name": "Maniack Crudelis",
-        "email": "maniackc_dev@crudelis.fr"
-    }],
     "requirements": {
         "yunohost": ">= 3.8.0"
     },
-    "multi_instance": true,
+    "multi_instance": false,
     "services": [
         "nginx",
         "php7.0-fpm",
@@ -44,17 +39,8 @@
                     "en": "Choose a path for your Webapp",
                     "fr": "Choisissez un chemin pour votre Webapp"
                 },
-                "example": "/site",
-                "default": "/site"
-            },
-            {
-                "name": "with_sftp",
-                "type": "boolean",
-                "ask": {
-                    "en": "Do you need a SFTP access?",
-                    "fr": "Avez-vous besoin d'un accès SFTP ?"
-                },
-                "default": true
+                "example": "/simple_webapp",
+                "default": "/simple_webapp"
             },
             {
                 "name": "password",

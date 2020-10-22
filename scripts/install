@@ -27,7 +27,6 @@ ynh_print_info --message="Retrieving arguments from the manifest..."
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
-with_sftp=$YNH_APP_ARG_WITH_SFTP
 password=$YNH_APP_ARG_PASSWORD
 is_public=$YNH_APP_ARG_IS_PUBLIC
 
@@ -56,7 +55,6 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_app_setting_set --app=$app --key=with_mysql --value=$with_mysql
-ynh_app_setting_set --app=$app --key=with_sftp --value=$with_sftp
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
 ynh_app_setting_set --app=$app --key=overwrite_nginx --value=0
@@ -114,18 +112,6 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# CONFIGURE SSH
-#=================================================
-if [ $with_sftp -eq 1 ]
-then
-    ynh_script_progression --message="Configuring ssh..."
-
-    cp -R ../conf/ssh_regenconf_hook /usr/share/yunohost/hooks/conf_regen/90-ssh_$app
-
-    ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file=/usr/share/yunohost/hooks/conf_regen/90-ssh_$app
-
-    yunohost tools regen-conf ssh
-fi
 
 #=================================================
 # MODIFY A CONFIG FILE
