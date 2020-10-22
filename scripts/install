@@ -148,16 +148,6 @@ ynh_print_info --message="Storing the config file checksum..."
 ynh_store_file_checksum --file="$config_file"
 
 #=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-
-mkdir -p "$final_path/www"
-
-    # Copy files to the right place
-    cp -r "../sources/www/" "$final_path/"
-
-
-#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -170,6 +160,17 @@ mkdir -p "$final_path/www"
 #chown root: "$final_path"
 
 #A FAIRE
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_print_info --message="Starting a systemd service..."
+
+# Start a systemd service
+ynh_systemd_action --service_name=$app --action="start" --log_path=systemd
+if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
+	sleep 60
+fi
 
 #=================================================
 # SETUP SSOWAT
