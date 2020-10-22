@@ -124,6 +124,8 @@ ynh_add_systemd_config
 #=================================================
 ynh_print_info --message="Modifying a config file..."
 
+mkdir -p "$final_path/.env"
+
 config_file="$final_path/.env"
 cp "../conf/.env" $config_file
 
